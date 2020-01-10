@@ -19,6 +19,15 @@ retriving a full json for each discovered item and let Zabbix to parse it to get
 It has a default set of items already enbled by default but most of them are disabled.
 This is meant as a starting point so you can decide which are the important ones for you.
 
+### haproxy_zbx_v4.0_template.xml
+This template is for **Zabbix 4.0** (and later).
+It takes advantage of all *haproxy_zbx_v3.4_template.xml* functions. Most of Items became disabled
+by default, few most usefull are enabled. Items *request total* and *sessions* are now replaced 
+with *request/minute* and *sessions/minute*, and its type is changed from Numeric(unsigned) to
+Numeric(float). Few graphs are added, most usefull are "frontend req/min", "frontend traffic".
+Trigger for backend servers is divided from single (when state is not UP) to separate alert level
+on DOWN/NOLB (Warn) and MAINT/DRAIN (Info).
+
 ### License
 
 [MIT License](http://opensource.org/licenses/MIT)
