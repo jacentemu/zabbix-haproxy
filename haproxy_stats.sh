@@ -38,9 +38,10 @@ fi
 
 debug() {
     [[ "${DEBUG}" -eq 1 ]] || return  # return immediately if debug is disabled
-    echo "DEBUG: $@" >> ${STATS_LOG_FILE}
+    local T=$(date +"%Y-%m-%d_%H:%M:%S.%N")
+    echo "$T DEBUG: $@" >> ${STATS_LOG_FILE}
     [[ "${DEBUG_ONLY_LOG}" -ne 1 ]] || return
-    echo >&2 "DEBUG: $@"
+    echo >&2 "$T DEBUG: $@"
 }
 
 fail() {
@@ -61,7 +62,7 @@ debug "STATS_LOG_FILE         => $STATS_LOG_FILE"
 debug "SOCAT_BIN              => $SOCAT_BIN"
 debug "NC_BIN                 => $NC_BIN"
 debug "CACHE_STATS_FILEPATH   => $CACHE_STATS_FILEPATH"
-debug "CACHE_STATS_EXPIRATION => $CACHE_STATS_EXPIRATION minutes"
+debug "CACHE_STATS_EXPIRATION => $CACHE_STATS_EXPIRATION seconds"
 debug "HAPROXY_SOCKET         => $HAPROXY_SOCKET"
 debug "pxname   => $pxname"
 debug "svname   => $svname"
